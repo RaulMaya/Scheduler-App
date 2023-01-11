@@ -2,6 +2,14 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  $(".saveBtn").on("click", function () {
+    console.log(this)
+    console.log(this.parentElement)
+    console.log(this.previousElementSibling)
+    console.log(this.previousElementSibling.value)
+    var today = dayjs();
+    console.log(today.format('HH'));
+  });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
