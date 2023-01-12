@@ -1,11 +1,14 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var mainHour;
+var mainHour, goal;
 var hours = $(".time-block");
 var today = dayjs();
 for (hour of hours) {
   mainHour = $("#" + hour.id);
+  goal = localStorage.getItem(hour.id)
+  console.log(mainHour[0].children[1])
+  mainHour[0].children[1].textContent = goal;
   console.log(hour.id)
   if (parseInt(hour.id.split("-")[1]) < parseInt(today.format("HH"))) {
     console.log(mainHour)
@@ -41,7 +44,12 @@ $(function () {
     console.log(this);
     console.log(this.parentElement);
     console.log(this.previousElementSibling);
+    console.log(this.parentElement.id);
     console.log(this.previousElementSibling.value);
+    if (this.previousElementSibling.value == "") {
+      console.log("Vacio")
+    }
+    localStorage.setItem(this.parentElement.id, this.previousElementSibling.value);
   });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
