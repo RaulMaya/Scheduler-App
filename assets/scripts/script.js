@@ -1,43 +1,33 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var mainHour, goal;
-var hours = $(".time-block");
 var today = dayjs();
+var mainHour, goal;
+var actualTime = $("#currentDay");
+actualTime[0].textContent = today.format("DD-MMM-YYYY  hh:mm A")
+console.log(dayjs().day(1))
+var hours = $(".time-block");
+var resetBtn = $("#resetSchedule")
+
 for (hour of hours) {
   mainHour = $("#" + hour.id);
   goal = localStorage.getItem(hour.id)
-  console.log(mainHour[0].children[1])
   mainHour[0].children[1].textContent = goal;
-  console.log(hour.id)
   if (parseInt(hour.id.split("-")[1]) < parseInt(today.format("HH"))) {
-    console.log(mainHour)
-    console.log("Past")
     mainHour.removeClass("present")
     mainHour.removeClass("future")
     mainHour.addClass("past")
   } else if (parseInt(hour.id.split("-")[1]) > parseInt(today.format("HH"))){
-    console.log(mainHour)
-    console.log("Future")
     mainHour.removeClass("present")
     mainHour.removeClass("past")
     mainHour.addClass("future")
   } else {
-    console.log(mainHour)
-    console.log("Future")
     mainHour.addClass("present")
     mainHour.removeClass("past")
     mainHour.removeClass("future")
   }
-  console.log(hour);
-
-  console.log(today.format("HH"));
-  console.log(hour.id.split("-")[1]);
-  console.log("===================");
 }
-console.log(hours[0].id);
-console.log(hours[0].id.split("-")[1]);
-console.log(today.format("HH"));
+
 
 $(function () {
   $(".saveBtn").on("click", function () {
@@ -51,6 +41,12 @@ $(function () {
     }
     localStorage.setItem(this.parentElement.id, this.previousElementSibling.value);
   });
+
+  $(resetBtn).on("click", function () {
+  console.log("reset")
+  localStorage.clear();
+  location.reload();
+});
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -70,3 +66,5 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+
