@@ -3,8 +3,14 @@
 // in the html.
 var today = dayjs();
 var mainHour, goal;
-var actualTime = $("#currentDay");
-actualTime[0].textContent = today.format("DD-MMM-YYYY  hh:mm A")
+
+
+function time() {
+  var liveDate = dayjs();
+  var actualTime = $("#currentDay");
+  actualTime[0].textContent = liveDate.format("DD-MMM-YYYY  hh:mm:ss A");
+}
+
 console.log(dayjs().day(1))
 var hours = $(".time-block");
 var resetBtn = $("#resetSchedule")
@@ -68,3 +74,4 @@ $(function () {
 });
 
 
+setInterval(time, 1000);
