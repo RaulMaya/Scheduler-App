@@ -4,11 +4,16 @@
 var today = dayjs();
 var mainHour, goal;
 
+function dayName(date, locale) {
+  var dayOfInterest = new Date(date);
+  return dayOfInterest.toLocaleDateString(locale, { weekday: 'long' });        
+}
 
 function time() {
   var liveDate = dayjs();
   var actualTime = $("#currentDay");
-  actualTime[0].textContent = liveDate.format("DD-MMM-YYYY  hh:mm:ss A");
+  var weekday = dayName(liveDate.format("DD-MMM-YYYY"), "en-us");
+  actualTime[0].textContent = weekday + ", " + liveDate.format("DD-MMM-YYYY  hh:mm:ss A");
 }
 
 console.log(dayjs().day(1))
