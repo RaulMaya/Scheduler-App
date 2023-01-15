@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Anybody:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wght@500&display=swap");
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
 }
 
@@ -66,13 +66,13 @@ textarea {
   border-radius: 12px;
   padding: 5px 10px;
   color: white;
-  border:white solid 3px;
+  border: white solid 3px;
   font-weight: bold;
   transition: 0.5s;
 }
 
 #resetSchedule:hover {
-  background-color: white;;
+  background-color: white;
   color: #06aed5;
   border: #06aed5 solid 3px;
   transition: 0.5s;
@@ -80,7 +80,7 @@ textarea {
 
 #currentDay {
   font-size: 1.75rem;
-  font-family: 'Anybody', cursive;
+  font-family: "Anybody", cursive;
   color: red;
 }
 
