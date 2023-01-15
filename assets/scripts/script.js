@@ -6,39 +6,39 @@ var mainHour, goal;
 
 function dayName(date, locale) {
   var dayOfInterest = new Date(date);
-  return dayOfInterest.toLocaleDateString(locale, { weekday: 'long' });        
+  return dayOfInterest.toLocaleDateString(locale, { weekday: "long" });
 }
 
 function time() {
   var liveDate = dayjs();
   var actualTime = $("#currentDay");
   var weekday = dayName(liveDate.format("DD-MMM-YYYY"), "en-us");
-  actualTime[0].textContent = weekday + ", " + liveDate.format("DD-MMM-YYYY  hh:mm:ss A");
+  actualTime[0].textContent =
+    weekday + ", " + liveDate.format("DD-MMM-YYYY  hh:mm:ss A");
 }
 
-console.log(dayjs().day(1))
+console.log(dayjs().day(1));
 var hours = $(".time-block");
-var resetBtn = $("#resetSchedule")
+var resetBtn = $("#resetSchedule");
 
 for (hour of hours) {
   mainHour = $("#" + hour.id);
-  goal = localStorage.getItem(hour.id)
+  goal = localStorage.getItem(hour.id);
   mainHour[0].children[1].textContent = goal;
   if (parseInt(hour.id.split("-")[1]) < parseInt(today.format("HH"))) {
-    mainHour.removeClass("present")
-    mainHour.removeClass("future")
-    mainHour.addClass("past")
-  } else if (parseInt(hour.id.split("-")[1]) > parseInt(today.format("HH"))){
-    mainHour.removeClass("present")
-    mainHour.removeClass("past")
-    mainHour.addClass("future")
+    mainHour.removeClass("present");
+    mainHour.removeClass("future");
+    mainHour.addClass("past");
+  } else if (parseInt(hour.id.split("-")[1]) > parseInt(today.format("HH"))) {
+    mainHour.removeClass("present");
+    mainHour.removeClass("past");
+    mainHour.addClass("future");
   } else {
-    mainHour.addClass("present")
-    mainHour.removeClass("past")
-    mainHour.removeClass("future")
+    mainHour.addClass("present");
+    mainHour.removeClass("past");
+    mainHour.removeClass("future");
   }
 }
-
 
 $(function () {
   $(".saveBtn").on("click", function () {
@@ -48,35 +48,19 @@ $(function () {
     console.log(this.parentElement.id);
     console.log(this.previousElementSibling.value);
     if (this.previousElementSibling.value == "") {
-      console.log("Vacio")
+      console.log("Vacio");
     }
-    localStorage.setItem(this.parentElement.id, this.previousElementSibling.value);
+    localStorage.setItem(
+      this.parentElement.id,
+      this.previousElementSibling.value
+    );
   });
 
   $(resetBtn).on("click", function () {
-  console.log("reset")
-  localStorage.clear();
-  location.reload();
+    console.log("reset");
+    localStorage.clear();
+    location.reload();
+  });
 });
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
-
 
 setInterval(time, 1000);

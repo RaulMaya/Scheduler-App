@@ -25,6 +25,7 @@
 ![mainMenu](./assets/images/landingPage.jpg)
 
 ### About The Project
+
 <br>
 <p> The main goal of this application, is to help the user to organize its workday, having an schedule where they can enter their assignments, meetings and tasks. The application goes from 8:00 AM and ends at 5:00 PM (Since it is "Work Day").
 </p>
